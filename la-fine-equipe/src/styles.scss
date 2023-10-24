@@ -6,3 +6,19 @@
     text-decoration: none;
     list-style: none;
 }
+
+// Vars
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Mixins
+@mixin bkp($breakpoint) {
+    @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
