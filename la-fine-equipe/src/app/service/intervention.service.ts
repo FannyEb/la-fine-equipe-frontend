@@ -11,18 +11,22 @@ export class InterventionService {
   constructor(private http: HttpClient) {}
 
   getPassedInterventions(): Observable<Intervention[]> {
-    return this.http.get<Intervention[]>(this.apiUrl + '/passed');
+    return this.http.get<Intervention[]>(`${this.apiUrl}/passed`);
   }
 
   getFutureInterventions(): Observable<Intervention[]> {
-    return this.http.get<Intervention[]>(this.apiUrl + '/future');
+    return this.http.get<Intervention[]>(`${this.apiUrl}/future`);
+  }
+
+  getIntervention(id: string): Observable<Intervention> {
+    return this.http.get<Intervention>(`${this.apiUrl}/${id}`);
   }
 
   confirmIntervention(intervention: Intervention) {
-    this.http.put(this.apiUrl + 'confirm/' + intervention.id, intervention);
+    this.http.put(`${this.apiUrl}/confirm/${intervention.id}`, intervention);
   }
 
   payIntervention(intervention: Intervention) {
-    this.http.put(this.apiUrl + 'pay/' + intervention.id, intervention);
+    this.http.put(`${this.apiUrl}/pay/${intervention.id}`, intervention);
   }
 }
