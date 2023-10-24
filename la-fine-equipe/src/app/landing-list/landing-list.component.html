@@ -1,1 +1,74 @@
-<p>landing-list works!</p>
+<div>
+  <h1>Actes médicaux passés</h1>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lieu</th>
+          <th>Nature de la prestation</th>
+          <th>Etat</th>
+          <th>Détails</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let intervention of futureInterventions">
+          <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
+          <td>{{ intervention.place }}</td>
+          <td>{{ intervention.intervention }}</td>
+          <td>
+            <div *ngIf="intervention.isConfirmed">Confirmé</div>
+            <div *ngIf="!intervention.isConfirmed">
+              En attente de confirmation
+              <button class="btn" role="button">
+                <i class="fa fa-check"></i>
+              </button>
+            </div>
+          </td>
+          <td>
+            <button class="btn" [routerLink]="['/', 'detail']">
+              Voir détails
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div>
+  <h1>Actes médicaux à venir</h1>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lieu</th>
+          <th>Nature de la prestation</th>
+          <th>Etat</th>
+          <th>Détails</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let intervention of passedInterventions">
+          <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
+          <td>{{ intervention.place }}</td>
+          <td>{{ intervention.intervention }}</td>
+          <td>
+            <div *ngIf="intervention.isPayed">Aquitté</div>
+            <div *ngIf="!intervention.isPayed">
+              En attente de paiement
+              <button class="btn" role="button">
+                <i class="fa fa-credit-card"></i>
+              </button>
+            </div>
+          </td>
+          <td>
+            <button class="btn" [routerLink]="['/', 'detail']">
+              Voir détails
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
