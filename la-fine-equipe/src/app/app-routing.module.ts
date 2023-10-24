@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
-import { HomeComponent } from './home/home.component';
 import { LandingListComponent } from './landing-list/landing-list.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-    { path: 'landing', component: LandingListComponent },
-  { path: "", component: HomeComponent },
-  { path: "detail", component: DetailComponent }
+  { path: '', component: AppComponent },
+  { path: 'landing', component: LandingListComponent },
+  { path: 'detail', component: DetailComponent },
 ];
 
 @NgModule({
