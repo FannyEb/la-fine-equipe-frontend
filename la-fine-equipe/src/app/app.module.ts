@@ -12,17 +12,14 @@ import { LandingListComponent } from './landing-list/landing-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingListComponent
+    LandingListComponent,
     DetailComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
