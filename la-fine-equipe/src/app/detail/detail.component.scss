@@ -1,0 +1,96 @@
+// Gestion des préfixes.
+@mixin prefix($property, $value) {
+    -webkit-#{$property}: $value;
+    -moz-#{$property}: $value;
+    -ms-#{$property}: $value;
+    -o-#{$property}: $value;
+    #{$property}: $value;
+}
+
+.detail {
+    margin: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #5FC6C6;
+    a {
+        margin: 1rem;
+        color: red;
+    }
+    .detail-table {
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .dt-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid #5FC6C6;
+            .dth-dps {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+
+                .dt-status-meeting {
+                    border-right: 1px solid #5FC6C6;
+                }
+            }
+            .dt-date, .dt-status-payment {
+                color: #FFFFFF;
+                background-color: #5FC6C6;
+            }
+            .dt-date, .dt-place, .dt-status-meeting, .dt-medic, .dt-status-payment {
+                padding: 1rem;
+            }
+        }
+        .dt-content {
+            display: flex;
+            flex-direction: column;
+            .dt-title {
+                align-self: center;
+                font-size: large;
+                padding: 1.5rem;
+                border: 1px solid #5FC6C6;
+                border-top: none;
+                @include prefix('width', -webkit-fill-available);
+            }
+            .dt-details {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #5FC6C6;
+                border-top: none;
+                padding: 1rem;
+                .dt-item {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0.5rem;
+                    .dti-title {
+                        font-size: medium;
+                    }
+                    .dti-desc {
+                        font-size: small;
+                    }
+                }
+            }
+        }
+        .dt-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            .dt-payment {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                div {
+                    padding: 0.5rem;
+                    border: 1px solid #5FC6C6;
+                    border-top: none;
+                }
+            }
+            .btn-pay {
+                margin: 2rem;
+                width: 10rem;
+                color: red;
+            }
+        }
+    }
+}
