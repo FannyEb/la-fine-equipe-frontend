@@ -5,7 +5,7 @@ import { LandingListComponent } from './landing-list/landing-list.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: LandingListComponent },
   { path: 'landing', component: LandingListComponent },
   { path: 'detail', component: DetailComponent },
 ];
