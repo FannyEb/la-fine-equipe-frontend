@@ -8,18 +8,20 @@ header {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: small;
     color: rgb(59, 59, 59);
-
+    img {
+        height: 120px;
+    }
     .auth-container {
-        border-radius: 5px;
-        background-color: #c2c2c261;
+        border: 1px solid #19527D;
         .auth-hello {
-            padding: 1rem;
+            padding: 1rem 2rem;
             margin: 0;
         }
         .auth-disconnect {
             display: none;
         }
         &:hover {
+            border-radius: 0 0 5px 5px;
             .auth-disconnect {
                 display: flex;
                 .auth-disconnect-text {
@@ -31,6 +33,7 @@ header {
                     color: rgb(59, 59, 59);
                     text-decoration: none;
                     list-style: none;
+                    background-color: #c2c2c229;
                     &:hover {
                         color: black;
                         box-shadow: inset 0 0 3rem #c2c2c29c;
