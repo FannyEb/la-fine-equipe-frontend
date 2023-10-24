@@ -20,7 +20,11 @@
             <div *ngIf="intervention.isConfirmed">Confirmé</div>
             <div *ngIf="!intervention.isConfirmed">
               En attente de confirmation
-              <button class="btn" role="button">
+              <button
+                class="btn"
+                role="button"
+                (click)="confirmIntervention(intervention.id)"
+              >
                 <i class="fa fa-check"></i>
               </button>
             </div>
@@ -57,7 +61,11 @@
             <div *ngIf="intervention.isPayed">Aquitté</div>
             <div *ngIf="!intervention.isPayed">
               En attente de paiement
-              <button class="btn" role="button">
+              <button
+                class="btn"
+                role="button"
+                (click)="payIntervention(intervention.id)"
+              >
                 <i class="fa fa-credit-card"></i>
               </button>
             </div>

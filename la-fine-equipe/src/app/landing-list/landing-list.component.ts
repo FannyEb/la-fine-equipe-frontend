@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Intervention } from '../model/intervention';
+import { InterventionService } from '../service/intervention.service';
 
 @Component({
   selector: 'app-landing-list',
@@ -10,24 +11,35 @@ export class LandingListComponent implements OnInit {
   passedInterventions: Intervention[];
   futureInterventions: Intervention[];
 
+  constructor(private interventionService: InterventionService) {}
+
   ngOnInit(): void {
-    //TODO récupérer les interventions passé et à venir
-    var intervention = new Intervention();
-    intervention.date = new Date();
-    intervention.id = '1';
-    intervention.intervention = 'scanner';
-    intervention.isConfirmed = true;
-    intervention.isPayed = false;
-    intervention.place = '3 rue ALice Guy';
-    this.passedInterventions = [intervention, intervention];
-    this.futureInterventions = [intervention];
+    this.interventionService.getFutureInterventions().subscribe((next) => {
+      this.futureInterventions = next;
+    });
+
+    this.interventionService.getPassedInterventions().subscribe((next) => {
+      this.passedInterventions = next;
+    });
   }
 
   confirmIntervention(interventionId: string) {
-    //TODO confirmer l'intervention à venir (identificable par interventionId)
+    var intervention = this.futureInterventions.find(
+      (x) => x.id === interventionId
+    );
+    if (intervention) {
+      intervention.isConfirmed = true;
+      this.interventionService.confirmIntervention(intervention);
+    }
   }
 
   payIntervention(interventionId: string) {
-    //TODO payer l'intervention passé (identificable par interventionId)
+    var intervention = this.passedInterventions.find(
+      (x) => x.id === interventionId
+    );
+    if (intervention) {
+      intervention.isPayed = true;
+      this.interventionService.payIntervention(intervention);
+    }
   }
 }
