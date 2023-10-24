@@ -8,6 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingListComponent } from './landing-list/landing-list.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +20,10 @@ import { LandingListComponent } from './landing-list/landing-list.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    LoginComponent,
+    SigninComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
