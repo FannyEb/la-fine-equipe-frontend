@@ -1,39 +1,61 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-signin',
+  standalone: true,
+  imports: [FormsModule, RouterLink],
+  template: `
+    <h1>Inscription</h1>
+
+    <p>Vous avez déjà un compte :</p>
+    <a [routerLink]="['/login']"> Connectez-vous </a>
+
+    <form
+      (ngSubmit)="onSubmit()"
+      #utilisateurForm="ngForm"
+      class="inscription-form"
+    >
+      <div class="form-group">
+        <label>Numéro de Sécurité Sociale:</label>
+        <input type="text" [(ngModel)]="user.socialSecurityNumber" required />
+      </div>
+
+      <div class="form-group">
+        <label>Mot de Passe:</label>
+        <input type="password" [(ngModel)]="user.password" required />
+      </div>
+
+      <div class="form-group">
+        <label>Nom:</label>
+        <input type="text" [(ngModel)]="user.lastName" required />
+      </div>
+
+      <div class="form-group">
+        <label>Prénom:</label>
+        <input type="text" [(ngModel)]="user.firstName" required />
+      </div>
+
+      <button type="submit" class="submit-button">Soumettre</button>
+    </form>
+  `,
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  // public clientForm: FormGroup = this.fb.group({
-  //   civility: ['', Validators.required],
-  //   firstName: ['', Validators.required],
-  //   lastName: ['', Validators.required],
-  //   email: ['', [Validators.required, Validators.email]],
-  //   zipCode: ['', [Validators.required, Validators.pattern(/(?:0[1-9]|[13-8][0-9]|2[ab1-9]|9[0-5])(?:[0-9]{3})?|9[78][1-9](?:[0-9]{2})?/)]],
-  //   login: ['', [Validators.required, Validators.pattern('')]], // mettre une regex pour le login
-  //   password: ['', Validators.required],
-  //   confirmPassword: ['', Validators.required],
-  // });
+  user: User = {
+    socialSecurityNumber: '',
+    password: '',
+    lastName: '',
+    firstName: '',
+  };
 
-  constructor(private fb: FormBuilder) {}
-
-  public utilisateurForm: FormGroup = this.fb.group({
-    numeroSecuriteSociale: new FormControl(''),
-    password: new FormControl(''),
-    nom: new FormControl(''),
-    prenom: new FormControl(''),
-  });
+  constructor(private router: Router) {}
 
   onSubmit() {
-    const formData = this.utilisateurForm.value;
-    console.log(formData); //log pour voir en console
+    console.log('Données soumises:', this.user);
+    this.router.navigate(['/']);
   }
 }

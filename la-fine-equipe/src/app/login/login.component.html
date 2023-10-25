@@ -1,31 +1,32 @@
-<h1>Connexion</h1>
+<div class="login-container">
+  <h1>Connexion</h1>
 
-<p>Si ce n'est pas déjà fait :</p>
-<a [routerLink]="['/signin']"> Créer un compte </a>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="user.socialSecurityNumber"
+        name="email"
+        required
+      />
+    </div>
 
-<br />
-<br />
-<br />
-<br />
-<!-- a retirer ^^ -->
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+      />
+    </div>
 
-<form action="/votre-page-de-traitement" method="POST">
-  <label for="nom_utilisateur">Nom d'utilisateur:</label>
-  <input
-    type="text"
-    id="nom_utilisateur"
-    name="nom_utilisateur"
-    required
-  /><br /><br />
+    <button type="submit" class="submit-button">Se connecter</button>
 
-  <label for="mot_de_passe">Mot de passe:</label>
-  <input
-    type="password"
-    id="mot_de_passe"
-    name="mot_de_passe"
-    required
-  /><br /><br />
-
-  <input type="submit" value="Se Connecter" />
-  <input type="reset" value="Effacer" />
-</form>
+    <p>Si ce n'est pas déjà fait :</p>
+    <a [routerLink]="['/signin']">Créer un compte</a>
+  </form>
+</div>
