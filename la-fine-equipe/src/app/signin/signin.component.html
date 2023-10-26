@@ -1,0 +1,52 @@
+<h1>Inscription</h1>
+
+<p>Vous avez déjà un compte :</p>
+<a [routerLink]="['/login']"> Connectez-vous </a>
+
+<form
+  (ngSubmit)="onSubmit()"
+  #utilisateurForm="ngForm"
+  class="inscription-form"
+>
+  <div class="form-group">
+    <label>Numéro de Sécurité Sociale:</label>
+    <input
+      type="text"
+      [(ngModel)]="user.socialSecurityNumber"
+      [ngModelOptions]="{ standalone: true }"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Mot de Passe:</label>
+    <input
+      type="password"
+      [(ngModel)]="user.password"
+      [ngModelOptions]="{ standalone: true }"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Nom:</label>
+    <input
+      type="text"
+      [(ngModel)]="user.lastName"
+      [ngModelOptions]="{ standalone: true }"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Prénom:</label>
+    <input
+      type="text"
+      [(ngModel)]="user.firstName"
+      [ngModelOptions]="{ standalone: true }"
+      required
+    />
+  </div>
+
+  <button type="submit" class="submit-button">Soumettre</button>
+</form>
