@@ -1,61 +1,113 @@
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.form {
+  width: 50rem;
+  margin: 5rem auto;
   text-align: center;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  border-radius: 1.5rem;
+  border: 1px solid #eee;
+  box-shadow: 0 1rem 2rem 0.03rem rgba(0, 0, 0, 0.2);
+  font-family: "Balsamiq Sans", cursive;
 
-  h1 {
-    font-size: 24px;
+  &__heading {
+    font-size: 2.6rem;
+    padding: 5rem 0;
+    color: #000000;
   }
 
-  p {
-    font-size: 16px;
+  &__group {
+    padding-bottom: 4rem;
+    position: relative;
   }
 
-  a {
-    color: #007bff;
-    text-decoration: none;
+  &__input {
+    width: 30rem;
+    color: #aaa;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    outline: none;
+    text-align: center;
+    font-size: 1.6rem;
+    font-family: inherit;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover {
+      -webkit-text-fill-color: #aaa !important;
+      -webkit-box-shadow: 0 0 0 3rem white inset !important;
+    }
+
+    &::placeholder {
+      color: #ccc;
+    }
+
+    &:not(:placeholder-shown) + .form__label {
+      opacity: 1;
+      color: #ddd;
+      position: absolute;
+      top: 42px;
+      width: 100%;
+      font-size: 20px;
+    }
+  }
+
+  &__label {
+    display: block;
+    color: #ccc;
+    transition: all 0.4s ease;
+    opacity: 0;
+    position: absolute;
+    top: 2.8rem;
+    width: 100%;
+    font-size: 2.4rem;
   }
 }
 
-.login-form {
-  max-width: 300px;
-  margin: 20px auto;
+.btn {
+  margin: 0 auto;
+  margin-bottom: 6rem;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 24px;
+  position: relative;
+  width: 15rem;
 
-  .form-group {
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+  transition: all 0.3s ease-in;
+}
 
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+.btn--large {
+  border-radius: 25px;
+  padding: 10px 35px 10px 40px;
+}
+
+.btn--color {
+  background-color: #52cac4;
+  color: white;
+
+  &:hover {
+    background-color: #4dafaa;
+
+    .btn__icon {
+      position: absolute;
+      left: 12rem;
+      opacity: 0;
+      transition: all 0.5s ease-in;
     }
   }
 
-  .submit-button {
-    display: block;
-    width: 100%;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0056b3;
-    }
+  &:active {
+    background-color: #2ecc71;
+    outline: none;
   }
 }

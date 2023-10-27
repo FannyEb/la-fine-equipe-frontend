@@ -9,35 +9,39 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, RouterLink],
   template: `
     <div class="login-container">
-      <h1>Connexion</h1>
-
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
-        <div class="form-group">
-          <label for="email">Email :</label>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
+        <h1 class="form__heading">Connexion</h1>
+        <div class="form__group">
           <input
             type="email"
             id="email"
             [(ngModel)]="user.socialSecurityNumber"
             name="email"
+            class="form__input"
+            placeholder="Email"
             required
           />
+          <label for="email" class="form__label">Email</label>
         </div>
-
-        <div class="form-group">
-          <label for="password">Mot de passe :</label>
+        <div class="form__group">
           <input
             type="password"
             id="password"
             [(ngModel)]="user.password"
             name="password"
+            class="form__input"
+            placeholder="Mot de passe"
             required
           />
+          <label for="password" class="form__label">Mot de passe</label>
         </div>
-
-        <button type="submit" class="submit-button">Se connecter</button>
-
-        <p>Si ce n'est pas déjà fait :</p>
-        <a [routerLink]="['/signin']">Créer un compte</a>
+        <button type="submit" class="btn btn--large btn--color submit-button">
+          Se connecter
+        </button>
+        <div class="form__group">
+          <p>Si ce n'est pas déjà fait :</p>
+          <a [routerLink]="['/signin']">Créer un compte</a>
+        </div>
       </form>
     </div>
   `,
