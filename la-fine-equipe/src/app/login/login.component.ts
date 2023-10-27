@@ -17,8 +17,18 @@ export class LoginComponent {
   constructor(private router: Router, private userService: UserService) {}
 
   onSubmit() {
-    this.userService.signin(this.user).subscribe((data) => {
-      this.router.navigate(['/', 'landing']);
-    });
+    this.userService.signin(this.user).subscribe(
+      (data) => {
+        console.log('signin data', data);
+        localStorage.setItem(
+          'userName',
+          `${data.user.firstName} ${data.user.lastName}`
+        );
+        this.router.navigate(['/', 'landing']);
+      },
+      (error) => {
+        console.log('signin error', error);
+      }
+    );
   }
 }

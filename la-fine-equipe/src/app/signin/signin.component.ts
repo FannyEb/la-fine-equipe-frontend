@@ -20,9 +20,12 @@ export class SigninComponent {
     console.log('Données soumises:', this.user);
 
     this.userService.signup(this.user).subscribe((data) => {
-      console.log('response signup', data);
       this.userService.signin(this.user).subscribe((data) => {
-        console.log('response signin', data);
+        console.log('signin data', data);
+        localStorage.setItem(
+          'userName',
+          `${data.user.firstName} ${data.user.lastName}`
+        );
         this.router.navigate(['/', 'landing']);
       });
     });

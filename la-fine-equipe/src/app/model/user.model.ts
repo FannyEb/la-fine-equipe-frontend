@@ -1,6 +1,6 @@
 export class User {
-  socialSecurityNumber: string;
-  password: string;
+  securityNumber: string;
   lastName?: string;
   firstName?: string;
+  password: string;
 }

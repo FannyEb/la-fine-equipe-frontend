@@ -8,14 +8,14 @@ import { User } from '../model/user.model';
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = 'http://localhost:3000/api/';
   constructor(private http: HttpClient) {}
 
   signin(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}signIn`, user);
+    return this.http.post(`${this.apiUrl}sign-in`, user);
   }
 
   signup(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}signUp`, user);
+    return this.http.post(`${this.apiUrl}sign-up`, user);
   }
 }
