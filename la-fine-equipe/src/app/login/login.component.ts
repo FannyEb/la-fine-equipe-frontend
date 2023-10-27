@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../model/user.model';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,13 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  user: User = {
-    socialSecurityNumber: '',
-    password: '',
-  };
+  user: User = new User();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   onSubmit() {
-    // Logique pour la connexion par la suite
-    this.router.navigate(['/', 'landing']);
+    this.userService.signin(this.user).subscribe((data) => {
+      this.router.navigate(['/', 'landing']);
+    });
   }
 }

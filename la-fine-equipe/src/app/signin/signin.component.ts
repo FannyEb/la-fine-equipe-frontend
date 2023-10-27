@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../model/user.model';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -11,15 +12,19 @@ import { User } from '../model/user.model';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  user: User;
+  user: User = new User();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   onSubmit() {
-    //TODO : appeler la route signin du back
-    //si success => appeler la route login du back
-    //si success => rediriger vers /landing
     console.log('Données soumises:', this.user);
-    this.router.navigate(['/', 'landing']);
+
+    this.userService.signup(this.user).subscribe((data) => {
+      console.log('response signup', data);
+      this.userService.signin(this.user).subscribe((data) => {
+        console.log('response signin', data);
+        this.router.navigate(['/', 'landing']);
+      });
+    });
   }
 }

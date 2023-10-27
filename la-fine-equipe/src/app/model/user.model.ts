@@ -1,4 +1,4 @@
-export interface User {
+export class User {
   socialSecurityNumber: string;
   password: string;
   lastName?: string;
