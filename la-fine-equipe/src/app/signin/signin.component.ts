@@ -41,7 +41,6 @@ import { User } from '../model/user.model';
       <button type="submit" class="submit-button">Soumettre</button>
     </form>
   `,
-  templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
