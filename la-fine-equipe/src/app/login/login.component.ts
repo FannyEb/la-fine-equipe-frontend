@@ -9,42 +9,42 @@ import { UserService } from '../service/user.service';
   standalone: true,
   imports: [FormsModule, RouterLink],
   template: `
-    <div class="login-container">
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
-        <h1 class="form__heading">Connexion</h1>
-        <div class="form__group">
-          <input
-            type="email"
-            id="email"
-            [(ngModel)]="user.securityNumber"
-            name="email"
-            class="form__input"
-            placeholder="Email"
-            required
-          />
-          <label for="email" class="form__label">Email</label>
-        </div>
-        <div class="form__group">
-          <input
-            type="password"
-            id="password"
-            [(ngModel)]="user.password"
-            name="password"
-            class="form__input"
-            placeholder="Mot de passe"
-            required
-          />
-          <label for="password" class="form__label">Mot de passe</label>
-        </div>
-        <button type="submit" class="btn btn--large btn--color submit-button">
-          Se connecter
-        </button>
-        <div class="form__group">
-          <p>Si ce n'est pas déjà fait :</p>
-          <a [routerLink]="['/signin']">Créer un compte</a>
-        </div>
-      </form>
-    </div>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
+      <h1 class="form__heading">Connexion</h1>
+      <div class="form__group">
+        <input
+          type="securityNumber"
+          id="securityNumber"
+          [(ngModel)]="user.securityNumber"
+          name="securityNumber"
+          class="form__input"
+          placeholder="Numéro de Sécurité Sociale"
+          required
+        />
+        <label for="securityNumber" class="form__label"
+          >Numéro de Sécurité Sociale
+        </label>
+      </div>
+      <div class="form__group">
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="user.password"
+          name="password"
+          class="form__input"
+          placeholder="Mot de passe"
+          required
+        />
+        <label for="password" class="form__label">Mot de passe</label>
+      </div>
+      <button type="submit" class="btn btn--large btn--color submit-button">
+        Se connecter
+      </button>
+      <div class="form__group">
+        <p>Si ce n'est pas déjà fait :</p>
+        <a [routerLink]="['/signin']">Créer un compte</a>
+      </div>
+    </form>
   `,
   styleUrls: ['./login.component.scss'],
 })
