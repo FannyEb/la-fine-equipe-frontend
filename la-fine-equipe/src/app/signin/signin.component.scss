@@ -23,6 +23,20 @@
   &__group {
     padding-bottom: 1rem;
     position: relative;
+
+    p {
+      color: #000; // Couleur du texte de paragraphe
+    }
+
+    a {
+      color: #52cac4; // Vert foncé
+      font-weight: bold;
+      text-decoration: none; // Supprimer le soulignement par défaut
+
+      &:hover {
+        color: #439995; // Changer la couleur au survol
+      }
+    }
   }
 
   &__input {
