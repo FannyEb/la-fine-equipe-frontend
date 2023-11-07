@@ -1,9 +1,19 @@
 <header>
-    <img src="#" alt="Logo DMI">
-    <div class="auth-container">
-        Bonjour "prenom"
-        <div class="auth-disconnect">
-            <a href="#">Se déconnecter</a>
-        </div>
+  <img
+    src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.ch-bastia.fr%2Fwp-content%2Fuploads%2F2018%2F12%2F47683375_586511195132174_5421187744841859072_o-1100x775.jpg&f=1&nofb=1&ipt=3f75fc3f27ac33b8ffdce614cb5496c0cd47fbc447f9ab9c2a5a3bf306ca020a&ipo=images"
+    alt="Logo DMI"
+  />
+  <div class="auth-container">
+    <p class="auth-hello">Bonjour {{ userName }} !</p>
+    <div class="auth-disconnect">
+      <a
+        href="#"
+        class="auth-disconnect-text"
+        [routerLink]="['']"
+        (click)="disconnect()"
+      >
+        Fermer la session
+      </a>
     </div>
+  </div>
 </header>

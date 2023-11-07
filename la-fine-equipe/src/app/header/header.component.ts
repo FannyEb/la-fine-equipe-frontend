@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  userName: string | null;
 
+  ngOnInit(): void {
+    this.userName = localStorage.getItem('userName');
+  }
+
+  disconnect() {
+    localStorage.clear();
+  }
 }

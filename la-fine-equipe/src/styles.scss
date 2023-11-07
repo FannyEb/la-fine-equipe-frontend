@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+// Vars
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Mixins
+@mixin bkp($breakpoint) {
+    @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+// Gestion des préfixes.
+@mixin prefix($property, $value) {
+    -webkit-#{$property}: $value;
+    -moz-#{$property}: $value;
+    -ms-#{$property}: $value;
+    -o-#{$property}: $value;
+    #{$property}: $value;
+}
