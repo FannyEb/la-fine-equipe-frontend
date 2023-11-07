@@ -6,9 +6,14 @@
   <div class="auth-container">
     <p class="auth-hello">Bonjour {{ userName }} !</p>
     <div class="auth-disconnect">
-      <a href="#" class="auth-disconnect-text" [routerLink]="['']"
-        >Fermer la session</a
+      <a
+        href="#"
+        class="auth-disconnect-text"
+        [routerLink]="['']"
+        (click)="disconnect()"
       >
+        Fermer la session
+      </a>
     </div>
   </div>
 </header>

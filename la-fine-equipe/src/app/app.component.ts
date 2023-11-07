@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { User } from './model/user.model';
 import { Router } from '@angular/router';
 
@@ -7,21 +7,6 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'la-fine-equipe';
-  user: User; //TODO : récuperer l'utilisateur quand il est connecté et le passer au header
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    this.user = {
-      socialSecurityNumber: 'utcvjhblnk,',
-      password: 'utcvukbj',
-      lastName: 'eber',
-      firstName: 'Fanny',
-    };
-    if (this.user) {
-      this.router.navigate(['/', 'landing']);
-    }
-  }
 }
