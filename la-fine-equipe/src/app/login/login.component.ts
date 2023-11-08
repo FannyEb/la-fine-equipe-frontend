@@ -1,17 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../model/user.model';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UserService } from '../service/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, CommonModule],
   template: `
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
+    <form
+      (ngSubmit)="onSubmit()"
+      #loginForm="ngForm"
+      class="form"
+      [formGroup]="logInForm"
+    >
       <h1 class="form__heading">Connexion</h1>
       <div class="form__group">
+        <div class="alert" *ngIf="securityNumberControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="securityNumber"
           id="securityNumber"
@@ -20,12 +36,16 @@ import { UserService } from '../service/user.service';
           class="form__input"
           placeholder="Numéro de Sécurité Sociale"
           required
+          formControlName="securityNumber"
         />
         <label for="securityNumber" class="form__label"
           >Numéro de Sécurité Sociale
         </label>
       </div>
       <div class="form__group">
+        <div class="alert" *ngIf="passwordControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="password"
           id="password"
@@ -34,6 +54,7 @@ import { UserService } from '../service/user.service';
           class="form__input"
           placeholder="Mot de passe"
           required
+          formControlName="password"
         />
         <label for="password" class="form__label">Mot de passe</label>
       </div>
@@ -48,24 +69,41 @@ import { UserService } from '../service/user.service';
   `,
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   user: User = new User();
 
-  constructor(private router: Router, private userService: UserService) {}
+  logInForm: FormGroup;
+  securityNumberControl = new FormControl(Validators.required);
+  passwordControl = new FormControl(Validators.required);
+
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.logInForm = this.fb.group({
+      securityNumber: this.securityNumberControl,
+      password: this.passwordControl,
+    });
+  }
 
   onSubmit() {
-    this.userService.signin(this.user).subscribe(
-      (data) => {
-        console.log('signin data', data);
-        localStorage.setItem(
-          'userName',
-          `${data.user.firstName} ${data.user.lastName}`
-        );
-        this.router.navigate(['/', 'landing']);
-      },
-      (error) => {
-        console.log('signin error', error);
-      }
-    );
+    if (!this.logInForm.invalid) {
+      this.userService.signin(this.user).subscribe(
+        (data) => {
+          console.log('signin data', data);
+          localStorage.setItem(
+            'userName',
+            `${data.user.firstName} ${data.user.lastName}`
+          );
+          this.router.navigate(['/', 'landing']);
+        },
+        (error) => {
+          console.log('signin error', error);
+        }
+      );
+    }
   }
 }
