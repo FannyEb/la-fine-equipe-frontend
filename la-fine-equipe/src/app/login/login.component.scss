@@ -21,8 +21,24 @@
   }
 
   &__group {
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
     position: relative;
+    display: flex;
+    justify-content: center;
+
+    p {
+      color: #000; // Couleur du texte de paragraphe
+    }
+
+    a {
+      color: #52cac4; // Vert foncé
+      font-weight: bold;
+      text-decoration: none; // Supprimer le soulignement par défaut
+
+      &:hover {
+        color: #439995; // Changer la couleur au survol
+      }
+    }
   }
 
   &__input {
@@ -72,7 +88,7 @@
 
 .btn {
   margin: 0 auto;
-  margin-bottom: 6rem;
+  margin-bottom: 1.8rem;
   border: none;
   color: #fff;
   font-family: inherit;
@@ -110,4 +126,15 @@
     background-color: #2ecc71;
     outline: none;
   }
+}
+
+.fa-exclamation {
+  color: rgb(166, 35, 35);
+}
+
+.alert {
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgb(166, 35, 35);
+  border-radius: 20px;
 }
