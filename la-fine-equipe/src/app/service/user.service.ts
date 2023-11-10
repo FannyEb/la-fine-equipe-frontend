@@ -8,7 +8,7 @@ import { User } from '../model/user.model';
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = 'http://dmi.mikl.fr:3000/auth/';
   constructor(private http: HttpClient) {}
 
   signin(user: User): Observable<any> {
