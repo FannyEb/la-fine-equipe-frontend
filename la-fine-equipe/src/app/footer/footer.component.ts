@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  standalone: true,
+  imports: [],
+  template: ` <footer>Tout droit réserve à<i>La fine équipe</i> ©.</footer> `,
+  styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent {
-
-}
+export class FooterComponent {}
