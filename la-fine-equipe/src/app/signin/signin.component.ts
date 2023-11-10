@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, CommonModule],
   template: `
-    <form (ngSubmit)="onSubmit()" #utilisateurForm="ngForm" class="form">
+    <form
+      (ngSubmit)="onSubmit()"
+      #utilisateurForm="ngForm"
+      class="form"
+      [formGroup]="signinForm"
+    >
       <h1 class="form__heading">Inscription</h1>
 
       <div class="form__group">
+        <div class="alert" *ngIf="securityNumberControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="securityNumber"
           id="securityNumber"
@@ -21,6 +38,7 @@ import { UserService } from '../service/user.service';
           class="form__input"
           placeholder="Numéro de Sécurité Sociale"
           required
+          formControlName="securityNumber"
         />
         <label for="securityNumber" class="form__label">
           Numéro de Sécurité Sociale
@@ -28,6 +46,9 @@ import { UserService } from '../service/user.service';
       </div>
 
       <div class="form__group">
+        <div class="alert" *ngIf="passwordControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="password"
           id="password"
@@ -36,11 +57,15 @@ import { UserService } from '../service/user.service';
           class="form__input"
           placeholder="Mot de Passe"
           required
+          formControlName="password"
         />
         <label for="password" class="form__label">Mot de Passe</label>
       </div>
 
       <div class="form__group">
+        <div class="alert" *ngIf="lastnameControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="text"
           [(ngModel)]="user.lastName"
@@ -48,11 +73,15 @@ import { UserService } from '../service/user.service';
           class="form__input"
           placeholder="Nom de famille"
           name="lastname"
+          formControlName="lastname"
         />
         <label for="lastName" class="form__label">Nom de famille</label>
       </div>
 
       <div class="form__group">
+        <div class="alert" *ngIf="firstnameControl.invalid">
+          <i class="fa fa-exclamation"></i>
+        </div>
         <input
           type="text"
           [(ngModel)]="user.firstName"
@@ -60,6 +89,7 @@ import { UserService } from '../service/user.service';
           placeholder="Prénom"
           required
           name="firstname"
+          formControlName="firstname"
         />
         <label for="firstName" class="form__label">Prénom</label>
       </div>
@@ -74,23 +104,42 @@ import { UserService } from '../service/user.service';
   `,
   styleUrls: ['./signin.component.scss'],
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
   user: User = new User();
 
-  constructor(private router: Router, private userService: UserService) {}
+  signinForm: FormGroup;
+  securityNumberControl = new FormControl(Validators.required);
+  passwordControl = new FormControl(Validators.required);
+  lastnameControl = new FormControl(Validators.required);
+  firstnameControl = new FormControl(Validators.required);
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.signinForm = this.fb.group({
+      securityNumber: this.securityNumberControl,
+      password: this.passwordControl,
+      lastname: this.lastnameControl,
+      firstname: this.firstnameControl,
+    });
+  }
 
   onSubmit() {
     console.log('Données soumises:', this.user);
-
-    this.userService.signup(this.user).subscribe((data) => {
-      this.userService.signin(this.user).subscribe((data) => {
-        console.log('signin data', data);
-        localStorage.setItem(
-          'userName',
-          `${data.user.firstName} ${data.user.lastName}`
-        );
-        this.router.navigate(['/', 'landing']);
+    if (!this.signinForm.invalid) {
+      this.userService.signup(this.user).subscribe((data) => {
+        this.userService.signin(this.user).subscribe((data) => {
+          console.log('signin data', data);
+          localStorage.setItem(
+            'userName',
+            `${data.user.firstName} ${data.user.lastName}`
+          );
+          this.router.navigate(['/', 'landing']);
+        });
       });
-    });
+    }
   }
 }

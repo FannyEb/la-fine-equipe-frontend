@@ -23,6 +23,8 @@
   &__group {
     padding-bottom: 1rem;
     position: relative;
+    display: flex;
+    justify-content: center;
 
     p {
       color: #000; // Couleur du texte de paragraphe
@@ -124,4 +126,15 @@
     background-color: #2ecc71;
     outline: none;
   }
+}
+
+.fa-exclamation {
+  color: rgb(166, 35, 35);
+}
+
+.alert {
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgb(166, 35, 35);
+  border-radius: 20px;
 }
