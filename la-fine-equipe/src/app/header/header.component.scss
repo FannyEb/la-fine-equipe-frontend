@@ -4,69 +4,71 @@ $breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 // Mixins
 @mixin bkp($breakpoint) {
-    @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
-        @content;
-    }
+  @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 0 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 10rem;
+  margin-top: 2rem;
+  font-family: "Balsamiq Sans", cursive;
+  // font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  //   "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: small;
+  color: rgb(59, 59, 59);
+
+  @include bkp(md) {
+    margin: 0;
     margin-top: 2rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: small;
-    color: rgb(59, 59, 59);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  img {
+    height: 120px;
+  }
+  .auth-container {
+    background-color: #74c6c6;
+    border-radius: 1.8rem;
+    color: #ffffff;
     @include bkp(md) {
-        margin: 0;
-        margin-top: 2rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      margin-top: 1rem;
     }
-
-    img {
-        height: 120px;
+    .auth-hello {
+      padding: 1rem 2rem;
+      margin: 0;
     }
-    .auth-container {
-        background-color: #5FC6C6;
-        border-radius: 5px;
-        color: #FFFFFF;
-        @include bkp(md) {
-            margin-top: 1rem;
-        }
-        .auth-hello {
-            padding: 1rem 2rem;
-            margin: 0;
-        }
-        .auth-disconnect {
-            display: none;
-        }
-        &:hover {
-            .auth-disconnect {
-                display: flex;
-                .auth-disconnect-text {
-                    display: flex;
-                    justify-content: center;
-                    padding: 1rem;
-                    width: 100%;
-                    border-radius: 0 0 5px 5px;
-                    color: #FFFFFF;
-                    text-decoration: none;
-                    list-style: none;
-                    &:hover {
-                        background-color: #ffffff29;
-                    }   
-                }
-            }
-        }
+    .auth-disconnect {
+      display: none;
     }
+    &:hover {
+      .auth-disconnect {
+        display: flex;
+        .auth-disconnect-text {
+          display: flex;
+          justify-content: center;
+          padding: 1rem;
+          width: 100%;
+          border-radius: 0 0 5px 5px;
+          color: #ffffff;
+          text-decoration: none;
+          list-style: none;
+          &:hover {
+            background-color: #ffffff29;
+          }
+        }
+      }
+    }
+  }
 }
