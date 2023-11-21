@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment, Intervention } from '../model/intervention';
 import { AppointmentService } from '../service/appointment.service';
+import * as AppointmentJson from '../../assets/appointment.json';
 
 @Component({
   selector: 'app-landing-list',
@@ -14,21 +15,27 @@ export class LandingListComponent implements OnInit {
   constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    this.appointmentService.getAppointments().subscribe((next) => {
-      next.forEach((intervention) => {
-        if (
-          intervention.patient.secNumber == localStorage.getItem('secNumber')
-        ) {
-          if (new Date(intervention.date) > new Date()) {
-            this.futureInterventions.push(intervention);
-          } else {
-            if (intervention.confirmed) {
-              this.passedInterventions.push(intervention);
-            }
+    var appointmentMock: Appointment[] = AppointmentJson;
+    var appointments = [
+      appointmentMock[0],
+      appointmentMock[1],
+      appointmentMock[2],
+      appointmentMock[3],
+    ];
+
+    appointments.forEach((intervention) => {
+      if (intervention.patient.secNumber == localStorage.getItem('secNumber')) {
+        if (new Date(intervention.date) > new Date()) {
+          this.futureInterventions.push(intervention);
+        } else {
+          if (intervention.confirmed) {
+            this.passedInterventions.push(intervention);
           }
         }
-      });
+      }
     });
+
+    this.appointmentService.getAppointments().subscribe((next) => {});
   }
 
   confirmIntervention(interventionId: string) {

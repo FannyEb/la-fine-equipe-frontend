@@ -5,7 +5,7 @@ export class Intervention {
 
 export class Appointment {
   id: string;
-  date: Date;
+  date: Date | string;
   confirmed: boolean;
   patient: Patient;
   place: Hospital;
@@ -24,7 +24,7 @@ export class Patient {
 }
 
 export class Hospital {
-  adress: string;
+  address: string;
   location: Location;
 }
 
