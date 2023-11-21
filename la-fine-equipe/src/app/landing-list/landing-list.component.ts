@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Intervention } from '../model/intervention';
-import { InterventionService } from '../service/intervention.service';
+import { Appointment, Intervention } from '../model/intervention';
+import { AppointmentService } from '../service/appointment.service';
 
 @Component({
   selector: 'app-landing-list',
@@ -8,18 +8,26 @@ import { InterventionService } from '../service/intervention.service';
   styleUrls: ['./landing-list.component.scss'],
 })
 export class LandingListComponent implements OnInit {
-  passedInterventions: Intervention[];
-  futureInterventions: Intervention[];
+  passedInterventions: Appointment[] = [];
+  futureInterventions: Appointment[] = [];
 
-  constructor(private interventionService: InterventionService) {}
+  constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    this.interventionService.getFutureInterventions().subscribe((next) => {
-      this.futureInterventions = next;
-    });
-
-    this.interventionService.getPassedInterventions().subscribe((next) => {
-      this.passedInterventions = next;
+    this.appointmentService.getAppointments().subscribe((next) => {
+      next.forEach((intervention) => {
+        if (
+          intervention.patient.secNumber == localStorage.getItem('secNumber')
+        ) {
+          if (new Date(intervention.date) > new Date()) {
+            this.futureInterventions.push(intervention);
+          } else {
+            if (intervention.confirmed) {
+              this.passedInterventions.push(intervention);
+            }
+          }
+        }
+      });
     });
   }
 
@@ -27,9 +35,10 @@ export class LandingListComponent implements OnInit {
     var intervention = this.futureInterventions.find(
       (x) => x.id === interventionId
     );
+
     if (intervention) {
-      intervention.isConfirmed = true;
-      this.interventionService.confirmIntervention(intervention);
+      intervention.confirmed = true;
+      this.appointmentService.confirmAppointment(intervention);
     }
   }
 
@@ -37,9 +46,10 @@ export class LandingListComponent implements OnInit {
     var intervention = this.passedInterventions.find(
       (x) => x.id === interventionId
     );
+
     if (intervention) {
-      intervention.isPayed = true;
-      this.interventionService.payIntervention(intervention);
+      intervention.invoice.paid = true;
+      this.appointmentService.payAppointment(intervention);
     }
   }
 }

@@ -137,6 +137,7 @@ export class SigninComponent implements OnInit {
             'userName',
             `${data.user.firstName} ${data.user.lastName}`
           );
+          localStorage.setItem('secNumber', data.user.securityNumber);
           this.router.navigate(['/', 'landing']);
         });
       });
