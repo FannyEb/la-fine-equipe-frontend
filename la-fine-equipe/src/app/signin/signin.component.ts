@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, RouterLink, ReactiveFormsModule, CommonModule],
   template: `
+  <div class="form-container">
     <form
       (ngSubmit)="onSubmit()"
       #utilisateurForm="ngForm"
@@ -40,9 +41,6 @@ import { CommonModule } from '@angular/common';
           required
           formControlName="securityNumber"
         />
-        <label for="securityNumber" class="form__label">
-          Numéro de Sécurité Sociale
-        </label>
       </div>
 
       <div class="form__group">
@@ -59,7 +57,6 @@ import { CommonModule } from '@angular/common';
           required
           formControlName="password"
         />
-        <label for="password" class="form__label">Mot de Passe</label>
       </div>
 
       <div class="form__group">
@@ -75,7 +72,6 @@ import { CommonModule } from '@angular/common';
           name="lastname"
           formControlName="lastname"
         />
-        <label for="lastName" class="form__label">Nom de famille</label>
       </div>
 
       <div class="form__group">
@@ -91,16 +87,16 @@ import { CommonModule } from '@angular/common';
           name="firstname"
           formControlName="firstname"
         />
-        <label for="firstName" class="form__label">Prénom</label>
       </div>
       <button type="submit" class="btn btn--large btn--color submit-button">
         Soumettre
       </button>
-      <div class="form__group">
+      <div class="form__group form__footer">
         <p>Vous avez déjà un compte :</p>
         <a [routerLink]="['/login']"> Connectez-vous </a>
       </div>
     </form>
+  </div>
   `,
   styleUrls: ['./signin.component.scss'],
 })
