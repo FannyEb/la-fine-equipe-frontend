@@ -20,13 +20,13 @@ import { UserService } from './service/user.service';
     LandingListComponent,
     DetailComponent,
     HeaderComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SigninComponent,
     LoginComponent,
+    FooterComponent,
     HttpClientModule,
   ],
   providers: [

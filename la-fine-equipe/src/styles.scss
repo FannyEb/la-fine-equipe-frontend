@@ -7,6 +7,19 @@
     list-style: none;
 }
 
+html {
+    height: 100%;
+}
+
+body {
+    height: inherit;
+}
+
+app-root, app-login {
+    display: block;
+    height: inherit;
+}
+
 // Vars
 $breakpoints: (
   xs: 0,
