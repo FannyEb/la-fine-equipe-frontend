@@ -10,6 +10,7 @@ import { InterventionService } from '../service/intervention.service';
 export class LandingListComponent implements OnInit {
   passedInterventions: Intervention[];
   futureInterventions: Intervention[];
+  elementActif: string = 'venir';
 
   constructor(private interventionService: InterventionService) {}
 
@@ -41,5 +42,9 @@ export class LandingListComponent implements OnInit {
       intervention.isPayed = true;
       this.interventionService.payIntervention(intervention);
     }
+  }
+  
+  activer(element: string) {
+    this.elementActif = element;
   }
 }

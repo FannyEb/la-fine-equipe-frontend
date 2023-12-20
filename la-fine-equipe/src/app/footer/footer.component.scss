@@ -1,16 +1,14 @@
 footer {
-  background-color: #5fc6c6;
-  color: #fff;
-  font-size: small;
-  padding: 10px;
-  font-family: "Balsamiq Sans", cursive;
-  // font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-  //   Verdana, sans-serif;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  border-top: 1px solid #ddd;
+  padding: 0.75rem 0;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #12557E;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #FFFFFF;
 }
 
 footer i {
