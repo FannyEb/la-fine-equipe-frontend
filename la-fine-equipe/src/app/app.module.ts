@@ -42,7 +42,7 @@ import { heroCreditCard, heroCheck } from '@ng-icons/heroicons/outline';
       deps: [AppointmentService, UserService],
     },
     provideNgIconsConfig({
-      size: '1.5em',
+      size: '1em',
       color: 'black',
     }),
   ],

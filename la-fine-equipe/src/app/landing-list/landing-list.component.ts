@@ -28,7 +28,17 @@ export class LandingListComponent implements OnInit {
           }
         }
       });
+
+      this.passedInterventions.sort((a,b) => this.compareDates(a.date,b.date));
+      this.futureInterventions.sort((a,b) =>this.compareDates(a.date,b.date));
     })
+  }
+
+  compareDates(a: string |Date , b: string | Date): number {
+    const dateA = typeof a === 'string' ? new Date(a) : a;
+    const dateB = typeof b === 'string' ? new Date(b) : b;
+
+    return dateA.getTime() - dateB.getTime();
   }
 
   confirmIntervention(interventionId: string) {

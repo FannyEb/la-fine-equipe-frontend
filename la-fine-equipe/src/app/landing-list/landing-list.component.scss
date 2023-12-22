@@ -56,118 +56,13 @@
 /* Table Styles */
 
 .table-wrapper {
-  margin: 10px 70px 70px;
-  box-shadow: 0px 35px 50px #00000033;
-}
-
-.fl-table {
-  font-size: 12px;
-  font-weight: normal;
-  border: none;
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
-  white-space: nowrap;
-  background-color: white;  
-}
-
-.fl-table td,
-.fl-table th {
-  text-align: center;
-  padding: 8px;
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  resize:both;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.fl-table td {
-  border-right: 1px solid #f8f8f8;
-  font-size: 12px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.fl-table thead th {
-  color: #ffffff;
-  background: #439995;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.fl-table thead th:nth-child(odd) {
-  color: #ffffff;
-  background: #597e91;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.fl-table tr:nth-child(even) {
-  background: #f8f8f8;
-}
-
-/* Responsive */
-
-@media (max-width: 767px) {
-  .fl-table {
-    display: block;
-    width: 100%;
-  }
-  .table-wrapper:before {
-    content: "Scroll horizontally >";
-    display: block;
-    text-align: right;
-    font-size: 11px;
-    color: white;
-    padding: 0 0 10px;
-  }
-  .fl-table thead,
-  .fl-table tbody,
-  .fl-table thead th {
-    display: block;
-  }
-  .fl-table thead th:last-child {
-    border-bottom: none;
-  }
-  .fl-table thead {
-    float: left;
-  }
-  .fl-table tbody {
-    width: auto;
-    position: relative;
-    overflow-x: auto;
-  }
-  .fl-table td,
-  .fl-table th {
-    padding: 20px 0.625em 0.625em 0.625em;
-    height: 60px;
-    vertical-align: middle;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width: 120px;
-    font-size: 13px;
-    text-overflow: ellipsis;
-  }
-  .fl-table thead th {
-    text-align: left;
-    border-bottom: 1px solid #f7f7f9;
-  }
-  .fl-table tbody tr {
-    display: table-cell;
-  }
-  .fl-table tbody tr:nth-child(odd) {
-    background: none;
-  }
-  .fl-table tr:nth-child(even) {
-    background: transparent;
-  }
-  .fl-table tr td:nth-child(odd) {
-    background: #f8f8f8;
-    border-right: 1px solid #e6e4e4;
-  }
-  .fl-table tr td:nth-child(even) {
-    border-right: 1px solid #e6e4e4;
-  }
-  .fl-table tbody td {
-    display: block;
-    text-align: center;
-  }
-}
 
 /* Button style*/
 .btn {
@@ -178,7 +73,71 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 2rem;
+  height: 45.33px;
+
 }
 .btn:hover {
   background-color: #89e099;
+}
+
+
+
+
+// CARD
+
+.card {
+  width: 220px;
+  min-width: fit-content;
+  margin-top: 20px; // Ajoutez les marges souhaitées
+  border-radius: 10px; // Bords arrondis
+  box-shadow: 8px 4px 8px rgba(0, 0, 0, 0.1); // Ombre légère
+
+  .card-header {
+    color: #000; // Couleur du texte de l'en-tête
+    border-bottom: #000;
+    padding: 0.3rem; // Ajoutez les espacements souhaités
+
+    h1 {
+      margin: 0; // Supprime les marges par défaut
+      padding: 0;
+    }
+  }
+
+  .card-content {
+    padding: 15px; // Ajoutez les espacements souhaités
+    border-bottom: 1px solid #ddd; // Bordure en bas avec une couleur de séparation
+
+    .card-item{
+      display: flex;
+      flex-direction: row;
+
+      h2{
+        font-size: small;
+        margin-right: 0.5rem;
+      }
+
+      p{
+        font-size: small;
+      }
+    }
+  }
+
+  .card-footer {
+    border-top: #000000;
+    color: #000; // Couleur du texte du pied de page
+    padding: 10px; // Ajoutez les espacements souhaités
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    h5 {
+      margin: 0; // Supprime les marges par défaut
+    }
+
+    .confirmed{
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }
