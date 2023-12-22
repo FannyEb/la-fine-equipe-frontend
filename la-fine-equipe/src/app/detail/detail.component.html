@@ -1,21 +1,35 @@
+<app-header></app-header>
 <div class="detail">
-  <a [routerLink]="['/', 'landing']">Retour à la page d'accueil</a>
-  <div class="detail-table">
-    <div class="dt-header">
-      <div class="dth-dps">
-        <div class="dt-date">{{ appointment.date | date : "dd/MM/yyyy" }}</div>
-        <div class="dt-place">{{ appointment.hospital.address }}</div>
-        <div *ngIf="appointment.confirmed" class="dt-status-meeting">Confirmé</div>
-        <div *ngIf="!appointment.confirmed" class="dt-status-meeting">En attente de confirmation</div>
-      </div>
-      <div *ngIf="appointment.invoice.paid" class="dt-status-payment">Payé</div>
-      <div *ngIf="!appointment.invoice.paid" class="dt-status-payment">En attente de paiement</div>
-    </div>
-    <div class="dt-content">
-      <div class="dt-title">{{ appointment.invoice.intervention.title }}</div>
-      <div class="dt-details">
-        <div class="dt-item">
-          <div class="dti-title">{{ appointment.interventionComments }}</div>
+    <div class="detail-table">
+        <div class="dt-header">
+            <div class="dt-sub-header">
+                <div class="dt-date"><strong>{{ appointment.date | date : "dd/MM/yyyy" }}</strong></div>
+                <div class="dt-place">{{ appointment.hospital.address }}</div>
+                <div *ngIf="appointment.confirmed" class="dt-status-meeting__confirmed">Confirmé</div>
+                <div *ngIf="!appointment.confirmed" class="dt-status-meeting">En attente de confirmation</div>
+                <div class="dt-medic">Dr. HOUSE Gregory</div>
+            </div>
+            <a [routerLink]="['/', 'landing']"><strong>Retour à la page d'accueil</strong></a>
+        </div>
+        <div class="dt-content">
+            <div class="dt-content-item">
+                <div class="dt-title">{{ appointment.invoice.intervention.title }}</div>
+                <div class="dt-details">
+                    <div class="dt-item">
+                        <div class="dti-title"><strong>{{ appointment.interventionComments }}</strong></div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="dt-footer">
+            <div class="dt-payment">
+                <div *ngIf="appointment.invoice.paid" class="dt-status-payment">Payé</div>
+                <div *ngIf="!appointment.invoice.paid" class="dt-status-payment">En attente de paiement</div>
+                <div class="dt-price"><strong>Prestation</strong>100,00€</div>
+                <div class="dt-reduce"><strong>Part S. S.</strong>-95,00€</div>
+                <div class="dt-left"><strong>Reste à charge</strong>5,00€</div>
+            </div>
+            <button class="btn-pay">Régler maintenant</button>
         </div>
       </div>
     </div>
@@ -29,5 +43,5 @@
       <button class="btn-pay" *ngIf="!appointment.confirmed" (click)="payIntervention()">Confirmer le rendez-vous</button>
 
     </div>
-  </div>
 </div>
+<app-footer></app-footer>
