@@ -18,6 +18,7 @@ export class Invoice {
   mutAmount: number;
   paid: boolean;
   intervention: Intervention;
+  interventionId: number;
 }
 
 export class Patient {

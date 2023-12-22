@@ -24,7 +24,7 @@
         <tbody>
           <tr *ngFor="let intervention of futureInterventions">
             <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
-            <td>{{ intervention.hospital.address }}</td>
+            <td>{{ intervention.hospital.address }}, {{ intervention.hospital.location.city }}</td>
             <td>{{ intervention.invoice.intervention.title }}</td>
             <td>
               <div *ngIf="intervention.confirmed">Confirmé</div>
@@ -41,7 +41,7 @@
             </td>
 
             <td>
-              <button class="btn" [routerLink]="['/', 'detail']">
+              <button class="btn" [routerLink]="['/', 'detail', intervention.id]">
                 Voir détails
               </button>
             </td>
@@ -66,7 +66,7 @@
         <tbody>
           <tr *ngFor="let intervention of passedInterventions">
             <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
-            <td>{{ intervention.hospital.address }}</td>
+            <td>{{ intervention.hospital.address }}, {{ intervention.hospital.location.city }}</td>
             <td>{{ intervention.invoice.intervention.title }}</td>
             <td>
               <div *ngIf="intervention.invoice.paid">Aquitté</div>
@@ -82,7 +82,7 @@
               </div>
             </td>
             <td>
-              <button class="btn" [routerLink]="['/', 'detail']">
+              <button class="btn" [routerLink]="['/', 'detail', intervention.id]">
                 Voir détails
               </button>
             </td>
