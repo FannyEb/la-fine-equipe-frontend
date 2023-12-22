@@ -25,23 +25,13 @@
             <div class="dt-payment">
                 <div *ngIf="appointment.invoice.paid" class="dt-status-payment">Payé</div>
                 <div *ngIf="!appointment.invoice.paid" class="dt-status-payment">En attente de paiement</div>
-                <div class="dt-price"><strong>Prestation</strong>100,00€</div>
-                <div class="dt-reduce"><strong>Part S. S.</strong>-95,00€</div>
-                <div class="dt-left"><strong>Reste à charge</strong>5,00€</div>
+                <div class="dt-price"><strong>Prestation</strong>{{appointment.invoice.intervention.totalPrice}}€</div>
+                <div class="dt-reduce"><strong>Part S. S.</strong>-{{appointment.invoice.mutAmount}}€</div>
+                <div class="dt-left"><strong>Reste à charge</strong>{{appointment.invoice.intervention.totalPrice - appointment.invoice.mutAmount}}€</div>
             </div>
-            <button class="btn-pay">Régler maintenant</button>
+            <button class="btn-pay" *ngIf="!appointment.invoice.paid && appointment.confirmed" (click)="confirmIntervention()">Régler maintenant</button>
+            <button class="btn-pay" *ngIf="!appointment.confirmed" (click)="payIntervention()">Confirmer le rendez-vous</button>        
         </div>
-      </div>
-    </div>
-    <div class="dt-footer">
-      <div class="dt-payment">
-        <div class="dt-price"><strong>Prestation</strong><br />{{appointment.invoice.intervention.totalPrice}}€</div>
-        <div class="dt-reduce"><strong>Part S. S.</strong><br />-{{appointment.invoice.mutAmount}}€</div>
-        <div class="dt-left"><strong>Reste à charge</strong><br />{{appointment.invoice.intervention.totalPrice - appointment.invoice.mutAmount}}€</div>
-      </div>
-      <button class="btn-pay" *ngIf="!appointment.invoice.paid && appointment.confirmed" (click)="confirmIntervention()">Régler maintenant</button>
-      <button class="btn-pay" *ngIf="!appointment.confirmed" (click)="payIntervention()">Confirmer le rendez-vous</button>
-
     </div>
 </div>
 <app-footer></app-footer>
