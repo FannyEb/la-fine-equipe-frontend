@@ -4,16 +4,9 @@
     alt="Logo DMI"
   />
   <div class="auth-container">
-    <p class="auth-hello">Bonjour {{ userName }} !</p>
-    <div class="auth-disconnect">
-      <a
-        href="#"
-        class="auth-disconnect-text"
-        [routerLink]="['']"
-        (click)="disconnect()"
-      >
+    <p class="auth-hello">{{ userName }}</p>
+    <button class="auth-disconnect" [routerLink]="['']" (click)="disconnect()">
         Fermer la session
-      </a>
-    </div>
+    </button>
   </div>
 </header>

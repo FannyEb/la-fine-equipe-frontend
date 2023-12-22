@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, RouterLink, ReactiveFormsModule, CommonModule],
   template: `
+  <div class="form-container">
     <form
       (ngSubmit)="onSubmit()"
       #loginForm="ngForm"
@@ -38,9 +39,6 @@ import { CommonModule } from '@angular/common';
           required
           formControlName="securityNumber"
         />
-        <label for="securityNumber" class="form__label"
-          >Numéro de Sécurité Sociale
-        </label>
       </div>
       <div class="form__group">
         <div class="alert" *ngIf="passwordControl.invalid">
@@ -56,16 +54,16 @@ import { CommonModule } from '@angular/common';
           required
           formControlName="password"
         />
-        <label for="password" class="form__label">Mot de passe</label>
       </div>
       <button type="submit" class="btn btn--large btn--color submit-button">
         Se connecter
       </button>
-      <div class="form__group">
+      <div class="form__group form__footer">
         <p>Si ce n'est pas déjà fait :</p>
         <a [routerLink]="['/signin']">Créer un compte</a>
       </div>
     </form>
+  </div>
   `,
   styleUrls: ['./login.component.scss'],
 })
