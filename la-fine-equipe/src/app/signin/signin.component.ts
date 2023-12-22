@@ -124,15 +124,14 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Données soumises:', this.user);
     if (!this.signinForm.invalid) {
       this.userService.signup(this.user).subscribe((data) => {
         this.userService.signin(this.user).subscribe((data) => {
-          console.log('signin data', data);
           localStorage.setItem(
             'userName',
             `${data.user.firstName} ${data.user.lastName}`
           );
+          localStorage.setItem('secNumber', data.user.securityNumber);
           this.router.navigate(['/', 'landing']);
         });
       });
