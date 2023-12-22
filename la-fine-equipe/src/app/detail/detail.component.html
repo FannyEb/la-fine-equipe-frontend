@@ -3,37 +3,45 @@
     <div class="detail-table">
         <div class="dt-header">
             <div class="dt-sub-header">
-                <div class="dt-date"><strong>24/10/2023</strong></div>
-                <div class="dt-place">Eckbolsheim</div>
-                <div class="dt-status-meeting__confirmed">Confirmé</div>
+                <div class="dt-date"><strong>{{ appointment.date | date : "dd/MM/yyyy" }}</strong></div>
+                <div class="dt-place">{{ appointment.hospital.address }}</div>
+                <div *ngIf="appointment.confirmed" class="dt-status-meeting__confirmed">Confirmé</div>
+                <div *ngIf="!appointment.confirmed" class="dt-status-meeting">En attente de confirmation</div>
                 <div class="dt-medic">Dr. HOUSE Gregory</div>
             </div>
-            <a href="/landing"><strong>Retour à la page d'accueil</strong></a>
+            <a [routerLink]="['/', 'landing']"><strong>Retour à la page d'accueil</strong></a>
         </div>
         <div class="dt-content">
             <div class="dt-content-item">
-                <div class="dt-title">Prise des métriques en vue d'une G.Y.E exagène</div>
+                <div class="dt-title">{{ appointment.invoice.intervention.title }}</div>
                 <div class="dt-details">
                     <div class="dt-item">
-                        <div class="dti-title"><strong>Prise de tension</strong></div>
-                        <div class="dti-desc"><i>Petite souflette en V5 par isionique 3</i></div>
-                    </div>
-                    <div class="dt-item">
-                        <div class="dti-title"><strong>Écoute du coeur</strong></div>
-                        <div class="dti-desc"><i>Logique dépacite, rotation par fluidification</i></div>
+                        <div class="dti-title"><strong>{{ appointment.interventionComments }}</strong></div>
                     </div>
                 </div>  
             </div>
         </div>
         <div class="dt-footer">
             <div class="dt-payment">
-                <div class="dt-status-payment"><strong>Statut</strong>Attente de paiement</div>
+                <div *ngIf="appointment.invoice.paid" class="dt-status-payment">Payé</div>
+                <div *ngIf="!appointment.invoice.paid" class="dt-status-payment">En attente de paiement</div>
                 <div class="dt-price"><strong>Prestation</strong>100,00€</div>
                 <div class="dt-reduce"><strong>Part S. S.</strong>-95,00€</div>
                 <div class="dt-left"><strong>Reste à charge</strong>5,00€</div>
             </div>
             <button class="btn-pay">Régler maintenant</button>
         </div>
+      </div>
+    </div>
+    <div class="dt-footer">
+      <div class="dt-payment">
+        <div class="dt-price"><strong>Prestation</strong><br />{{appointment.invoice.intervention.totalPrice}}€</div>
+        <div class="dt-reduce"><strong>Part S. S.</strong><br />-{{appointment.invoice.mutAmount}}€</div>
+        <div class="dt-left"><strong>Reste à charge</strong><br />{{appointment.invoice.intervention.totalPrice - appointment.invoice.mutAmount}}€</div>
+      </div>
+      <button class="btn-pay" *ngIf="!appointment.invoice.paid && appointment.confirmed" (click)="confirmIntervention()">Régler maintenant</button>
+      <button class="btn-pay" *ngIf="!appointment.confirmed" (click)="payIntervention()">Confirmer le rendez-vous</button>
+
     </div>
 </div>
 <app-footer></app-footer>

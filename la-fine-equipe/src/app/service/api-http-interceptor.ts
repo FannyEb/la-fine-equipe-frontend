@@ -29,6 +29,12 @@ export class ApiHttpInterceptor implements HttpInterceptor {
       });
     }
 
+    request = request.clone({
+      setHeaders: {
+        'X-Source-Module': 'dmi',
+      },
+    });
+
     return next.handle(request).pipe(
       tap(
         (event: HttpEvent<any>) => {
