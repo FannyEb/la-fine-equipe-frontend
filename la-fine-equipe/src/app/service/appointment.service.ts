@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Appointment } from '../model/intervention';
+import { Appointment, Invoice } from '../model/intervention';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppointmentService {
   apiUrl = 'http://middle.mikl.fr/api/module/hopital/Appointment';
+  apiInvoiceUrl = 'http://middle.mikl.fr/api/module/hopital/Invoice';
   constructor(private http: HttpClient) {}
 
   getAppointments(): Observable<Appointment[]> {
@@ -18,11 +19,11 @@ export class AppointmentService {
     return this.http.get<Appointment>(`${this.apiUrl}/${id}`);
   }
 
-  confirmAppointment(Appointment: Appointment) {
-    this.http.patch(`${this.apiUrl}/${Appointment.id}/validate`, Appointment);
+  confirmAppointment(Appointment: Appointment): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${Appointment.id}/validate`, Appointment);
   }
 
-  payAppointment(Appointment: Appointment) {
-    this.http.put(`${this.apiUrl}/${Appointment.id}/pay`, Appointment);
+  payAppointment(invoice: Invoice, invoiceId: number): Observable<any> {
+    return this.http.patch(`${this.apiInvoiceUrl}/${invoiceId}/paid`, invoice);
   }
 }

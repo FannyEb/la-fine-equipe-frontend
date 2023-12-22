@@ -11,6 +11,7 @@ import * as AppointmentJson from '../../assets/appointment.json';
 export class LandingListComponent implements OnInit {
   passedInterventions: Appointment[] = [];
   futureInterventions: Appointment[] = [];
+  elementActif: string = 'venir';
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -31,24 +32,40 @@ export class LandingListComponent implements OnInit {
   }
 
   confirmIntervention(interventionId: string) {
+    console.log(interventionId)
+
     var intervention = this.futureInterventions.find(
       (x) => x.id === interventionId
     );
 
+    console.log(intervention)
+
     if (intervention) {
       intervention.confirmed = true;
-      this.appointmentService.confirmAppointment(intervention);
+      this.appointmentService.confirmAppointment(intervention).subscribe((next)=>{
+        console.log('response', next)
+      });
     }
   }
 
   payIntervention(interventionId: string) {
+    console.log(interventionId)
     var intervention = this.passedInterventions.find(
       (x) => x.id === interventionId
     );
 
+    console.log(intervention)
+
+
     if (intervention) {
       intervention.invoice.paid = true;
-      this.appointmentService.payAppointment(intervention);
+      this.appointmentService.payAppointment(intervention.invoice, intervention.invoiceId).subscribe((next)=>{
+        console.log('response', next)
+      })
     }
+  }
+
+  activer(element: string) {
+    this.elementActif = element;
   }
 }

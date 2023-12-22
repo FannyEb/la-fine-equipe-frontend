@@ -18,56 +18,39 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
-  margin: 0 10rem;
-  margin-top: 2rem;
-  font-family: "Balsamiq Sans", cursive;
-  // font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-  //   "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: small;
-  color: rgb(59, 59, 59);
-
-  @include bkp(md) {
-    margin: 0;
-    margin-top: 2rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  align-items: center;
+  padding: 2rem 4rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  @include bkp(sm) {
+    padding: 1rem 2rem;
   }
-
   img {
-    height: 120px;
+    height: 64px;
   }
   .auth-container {
-    background-color: #74c6c6;
-    border-radius: 1.8rem;
-    color: #ffffff;
-    @include bkp(md) {
-      margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    @include bkp(sm) {
+      flex-direction: column-reverse;
+      gap: 1rem;
     }
     .auth-hello {
-      padding: 1rem 2rem;
-      margin: 0;
+      font-size: small;
+      color: #12557E;
     }
     .auth-disconnect {
-      display: none;
-    }
-    &:hover {
-      .auth-disconnect {
-        display: flex;
-        .auth-disconnect-text {
-          display: flex;
-          justify-content: center;
-          padding: 1rem;
-          width: 100%;
-          border-radius: 0 0 5px 5px;
-          color: #ffffff;
-          text-decoration: none;
-          list-style: none;
-          &:hover {
-            background-color: #ffffff29;
-          }
-        }
+      padding: 0.5rem 1rem;
+      border: 1px solid #60C7C7;
+      background-color: #FFFFFF;
+      color: #60C7C7;
+      &:hover {
+        border: 1px solid #12557E;
+        background-color: rgba(18, 85, 126, 0.145);
+        color: #12557E;
+        cursor: pointer;
       }
     }
   }

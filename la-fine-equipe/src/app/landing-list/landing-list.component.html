@@ -1,86 +1,95 @@
 <app-header></app-header>
-
-<div>
-  <h1>Actes médicaux à venir</h1>
-  <div class="table-wrapper">
-    <table class="fl-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Lieu</th>
-          <th>Nature de la prestation</th>
-          <th>Etat</th>
-          <th>Détails</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let intervention of futureInterventions">
-          <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
-          <td>{{ intervention.hospital.address }}</td>
-          <td>{{ intervention.invoice.intervention.title }}</td>
-          <td>
-            <div *ngIf="intervention.confirmed">Confirmé</div>
-            <div *ngIf="!intervention.confirmed">
-              En attente de confirmation
-              <button
-                class="btn"
-                role="button"
-                (click)="confirmIntervention(intervention.id)"
-              >
-                <ng-icon name="heroCheck"></ng-icon>
-
-              </button>
-            </div>
-          </td>
-          <td>
-            <button class="btn" [routerLink]="['/', 'detail', intervention.id]">
-              Voir détails
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<main class="landing-list">
+  <div class="tab-container">
+    <div class="tab">
+      <button id="btn-venir" class="btn-left" (click)="activer('venir')">Actes médicaux à venir</button>
+    </div>
+    <div class="tab">
+      <button id="btn-passes" class="btn-right" (click)="activer('passes')">Actes médicaux passés</button>
+    </div>
   </div>
-</div>
-<div>
-  <h1>Actes médicaux passé</h1>
-  <div class="table-wrapper">
-    <table class="fl-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Lieu</th>
-          <th>Nature de la prestation</th>
-          <th>Etat</th>
-          <th>Détails</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let intervention of passedInterventions">
-          <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
-          <td>{{ intervention.hospital.address }}</td>
-          <td>{{ intervention.invoice.intervention.title }}</td>
-          <td>
-            <div *ngIf="intervention.invoice.paid">Aquitté</div>
-            <div *ngIf="!intervention.invoice.paid">
-              En attente de paiement
-              <button
-                class="btn"
-                role="button"
-                (click)="payIntervention(intervention.id)"
-              >
+  <div id="venir" class="landing-container" [ngClass]="{'non-active': elementActif !== 'venir'}">
+    <h1>Actes médicaux à venir</h1>
+    <div class="table-wrapper">
+      <table class="fl-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Nature de la prestation</th>
+            <th>État</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let intervention of futureInterventions">
+            <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
+            <td>{{ intervention.hospital.address }}</td>
+            <td>{{ intervention.invoice.intervention.title }}</td>
+            <td>
+              <div *ngIf="intervention.confirmed">Confirmé</div>
+              <div *ngIf="!intervention.confirmed">
+                En attente de confirmation
+                <button
+                  class="btn"
+                  role="button"
+                  (click)="confirmIntervention(intervention.id)"
+                >
+                  <ng-icon name="heroCheck"></ng-icon>
+                </button>
+              </div>
+            </td>
+
+            <td>
+              <button class="btn" [routerLink]="['/', 'detail']">
+                Voir détails
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="passes" class="landing-container non-active" [ngClass]="{'non-active': elementActif !== 'passes'}">
+    <h1>Actes médicaux passés</h1>
+    <div class="table-wrapper">
+      <table class="fl-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Nature de la prestation</th>
+            <th>État</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let intervention of passedInterventions">
+            <th>{{ intervention.date | date : "dd/MM/yyyy" }}</th>
+            <td>{{ intervention.hospital.address }}</td>
+            <td>{{ intervention.invoice.intervention.title }}</td>
+            <td>
+              <div *ngIf="intervention.invoice.paid">Aquitté</div>
+              <div *ngIf="!intervention.invoice.paid">
+                En attente de paiement
+                <button
+                  class="btn"
+                  role="button"
+                  (click)="payIntervention(intervention.id)"
+                >
                 <ng-icon name="heroCreditCard"></ng-icon>
-
+                </button>
+              </div>
+            </td>
+            <td>
+              <button class="btn" [routerLink]="['/', 'detail']">
+                Voir détails
               </button>
-            </div>
-          </td>
-          <td>
-            <button class="btn" [routerLink]="['/', 'detail']">
-              Voir détails
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+</main>
+<app-footer></app-footer>

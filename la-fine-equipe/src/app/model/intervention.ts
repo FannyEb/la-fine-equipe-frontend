@@ -11,6 +11,7 @@ export class Appointment {
   hospital: Hospital;
   interventionComments: string;
   invoice: Invoice;
+  invoiceId: number;
 }
 
 export class Invoice {

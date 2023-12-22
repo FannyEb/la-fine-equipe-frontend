@@ -1,12 +1,56 @@
-* {
-  font-family: "Balsamiq Sans", cursive;
-}
-
-h1 {
-  font-size: 1.6rem;
-  padding: 1.4rem 0;
-  color: #000000;
-  text-align: center;
+.landing-list {
+  background: #60C7C7;
+  background: linear-gradient(225deg, #60C7C7, #FAB4FF);
+  min-height: calc(100vh - 128px - 96px - 39.5px);
+  padding: 3rem 2rem;
+  .tab-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    .tab {
+      width: 50%;
+      button {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #000000;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 12px;
+        padding: 0.5rem 0;
+        background-color: #FFFFFF;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        &:hover {
+          background-color: #f7f7f9;
+          cursor: pointer;
+        }
+      }
+      .btn-left {
+        border-radius: 5px 0 0 0;
+        border-right: 0.5px solid #000000;
+      }
+      .btn-right {
+        border-radius: 0 5px 0 0;
+        border-left: 0.5px solid #000000;
+      }
+    }
+  }
+  .non-active {
+    display: none !important;
+  }
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    padding: 1rem 2rem;
+    border-radius: 0 0 5px 5px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    h1 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: #12557E;
+      font-size: medium;
+      padding: 1.4rem 0;
+      text-align: center;
+    }
+  }
 }
 
 /* Table Styles */
@@ -24,28 +68,32 @@ h1 {
   width: 100%;
   max-width: 100%;
   white-space: nowrap;
-  background-color: white;
+  background-color: white;  
 }
 
 .fl-table td,
 .fl-table th {
   text-align: center;
   padding: 8px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .fl-table td {
   border-right: 1px solid #f8f8f8;
   font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .fl-table thead th {
   color: #ffffff;
   background: #439995;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .fl-table thead th:nth-child(odd) {
   color: #ffffff;
   background: #597e91;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .fl-table tr:nth-child(even) {
