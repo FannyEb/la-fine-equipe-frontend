@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiHttpInterceptor } from './service/api-http-interceptor';
 import { AppointmentService } from './service/appointment.service';
 import { UserService } from './service/user.service';
+import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core';
+import { heroCreditCard, heroCheck } from '@ng-icons/heroicons/outline';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { UserService } from './service/user.service';
     LoginComponent,
     FooterComponent,
     HttpClientModule,
+    NgIconsModule.withIcons({ heroCheck, heroCreditCard }),
   ],
   providers: [
     AppointmentService,
@@ -38,6 +41,10 @@ import { UserService } from './service/user.service';
       multi: true,
       deps: [AppointmentService, UserService],
     },
+    provideNgIconsConfig({
+      size: '1.5em',
+      color: 'black',
+    }),
   ],
   bootstrap: [AppComponent],
 })

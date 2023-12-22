@@ -8,7 +8,7 @@ export class Appointment {
   date: Date | string;
   confirmed: boolean;
   patient: Patient;
-  place: Hospital;
+  hospital: Hospital;
   interventionComments: string;
   invoice: Invoice;
 }

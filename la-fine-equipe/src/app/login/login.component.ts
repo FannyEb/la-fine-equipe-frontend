@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit {
     if (!this.logInForm.invalid) {
       this.userService.signin(this.user).subscribe(
         (data) => {
-          console.log('signin data', data);
           localStorage.setItem(
             'userName',
             `${data.user.firstName} ${data.user.lastName}`

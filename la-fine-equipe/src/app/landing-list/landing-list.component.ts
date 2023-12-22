@@ -15,27 +15,19 @@ export class LandingListComponent implements OnInit {
   constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    var appointmentMock: Appointment[] = AppointmentJson;
-    var appointments = [
-      appointmentMock[0],
-      appointmentMock[1],
-      appointmentMock[2],
-      appointmentMock[3],
-    ];
-
-    appointments.forEach((intervention) => {
-      if (intervention.patient.secNumber == localStorage.getItem('secNumber')) {
-        if (new Date(intervention.date) > new Date()) {
-          this.futureInterventions.push(intervention);
-        } else {
-          if (intervention.confirmed) {
-            this.passedInterventions.push(intervention);
+    this.appointmentService.getAppointments().subscribe(appointments =>{
+      appointments.forEach((intervention) => {
+        if (intervention.patient != null && intervention.patient.secNumber == localStorage.getItem('secNumber')) {
+          if (new Date(intervention.date) > new Date()) {
+            this.futureInterventions.push(intervention);
+          } else {
+            if (intervention.confirmed) {
+              this.passedInterventions.push(intervention);
+            }
           }
         }
-      }
-    });
-
-    this.appointmentService.getAppointments().subscribe((next) => {});
+      });
+    })
   }
 
   confirmIntervention(interventionId: string) {
