@@ -25,7 +25,7 @@
                 <div *ngIf="appointment.invoice.paid" class="dt-status-payment">Payé</div>
                 <div *ngIf="!appointment.invoice.paid" class="dt-status-payment">En attente de paiement</div>
                 <div class="dt-price"><strong>Prestation</strong>{{appointment.invoice.intervention.totalPrice}}€</div>
-                <div class="dt-reduce"><strong>Part S. S.</strong>-{{appointment.invoice.mutAmount}}€</div>
+                <div class="dt-reduce"><strong>Part mutuelle</strong>-{{appointment.invoice.mutAmount}}€</div>
                 <div class="dt-left"><strong>Reste à charge</strong>{{appointment.invoice.intervention.totalPrice - appointment.invoice.mutAmount}}€</div>
             </div>
             <button class="btn-pay" *ngIf="!appointment.invoice.paid && appointment.confirmed" (click)="confirmIntervention()">Régler maintenant</button>
