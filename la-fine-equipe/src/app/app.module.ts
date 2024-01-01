@@ -15,6 +15,7 @@ import { AppointmentService } from './service/appointment.service';
 import { UserService } from './service/user.service';
 import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core';
 import { heroCreditCard, heroCheck } from '@ng-icons/heroicons/outline';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { heroCreditCard, heroCheck } from '@ng-icons/heroicons/outline';
     LoginComponent,
     FooterComponent,
     HttpClientModule,
+    NotifierModule,
     NgIconsModule.withIcons({ heroCheck, heroCreditCard }),
   ],
   providers: [

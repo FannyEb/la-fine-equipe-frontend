@@ -14,7 +14,7 @@
       <div *ngFor="let intervention of futureInterventions">
         <div class="card">
           <header class="card-header">
-            <h1>{{ intervention.date | date : "dd/MM/yyyy" }}</h1>
+            <h1>{{ intervention.date | date : "dd/MM/yyyy hh:mm" }}</h1>
           </header>
 
           <div class="card-content">
@@ -63,7 +63,7 @@
       <div *ngFor="let intervention of passedInterventions">
         <div class="card">
           <header class="card-header">
-            <h1>{{ intervention.date | date : "dd/MM/yyyy" }}</h1>
+            <h1>{{ intervention.date | date : "dd/MM/yyyy hh:mm" }}</h1>
           </header>
 
           <div class="card-content">

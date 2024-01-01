@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { CommonModule } from '@angular/common';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -73,12 +74,17 @@ export class LoginComponent implements OnInit {
   logInForm: FormGroup;
   securityNumberControl = new FormControl(Validators.required);
   passwordControl = new FormControl(Validators.required);
+  private readonly notifier: NotifierService;
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService
+
+  }
 
   ngOnInit(): void {
     this.logInForm = this.fb.group({
@@ -98,8 +104,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('secNumber', data.user.securityNumber);
           this.router.navigate(['/', 'landing']);
         },
-        (error) => {
-          console.log('signin error', error);
+        (error) =>{
+          this.user = new User();
+          this.notifier.notify('error', "Les données sont incorrectes")
         }
       );
     }

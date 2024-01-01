@@ -10,8 +10,8 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-signin',
@@ -102,7 +102,9 @@ import { CommonModule } from '@angular/common';
 })
 export class SigninComponent implements OnInit {
   user: User = new User();
+  private readonly notifier: NotifierService;
 
+  error = false
   signinForm: FormGroup;
   securityNumberControl = new FormControl(Validators.required);
   passwordControl = new FormControl(Validators.required);
@@ -111,8 +113,12 @@ export class SigninComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService
+
+  }
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
@@ -127,14 +133,22 @@ export class SigninComponent implements OnInit {
     if (!this.signinForm.invalid) {
       this.userService.signup(this.user).subscribe((data) => {
         this.userService.signin(this.user).subscribe((data) => {
+
           localStorage.setItem(
             'userName',
             `${data.user.firstName} ${data.user.lastName}`
           );
           localStorage.setItem('secNumber', data.user.securityNumber);
           this.router.navigate(['/', 'landing']);
-        });
-      });
+
+
+        }
+        )
+      },
+      (error =>{
+        this.user = new User();
+        this.notifier.notify('error', "Les données sont incorrectes")
+      }));
     }
   }
 }

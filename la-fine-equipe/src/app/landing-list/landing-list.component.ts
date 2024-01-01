@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Appointment, Intervention } from '../model/intervention';
 import { AppointmentService } from '../service/appointment.service';
 import * as AppointmentJson from '../../assets/appointment.json';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-landing-list',
@@ -12,8 +13,12 @@ export class LandingListComponent implements OnInit {
   passedInterventions: Appointment[] = [];
   futureInterventions: Appointment[] = [];
   elementActif: string = 'venir';
+  private readonly notifier: NotifierService;
 
-  constructor(private appointmentService: AppointmentService) {}
+  constructor(private appointmentService: AppointmentService, notifierService: NotifierService)
+  {
+    this.notifier = notifierService
+  }
 
   ngOnInit(): void {
     this.appointmentService.getAppointments().subscribe(appointments =>{
@@ -53,7 +58,10 @@ export class LandingListComponent implements OnInit {
     if (intervention) {
       intervention.confirmed = true;
       this.appointmentService.confirmAppointment(intervention).subscribe((next)=>{
-        console.log('response', next)
+        this.notifier.notify('success', 'Votre rendez-vous est confirmé')
+      },
+      (error) =>{
+        this.notifier.notify('error', 'Une erreur est survenue')
       });
     }
   }
@@ -70,7 +78,10 @@ export class LandingListComponent implements OnInit {
     if (intervention) {
       intervention.invoice.paid = true;
       this.appointmentService.payAppointment(intervention.invoice, intervention.invoiceId).subscribe((next)=>{
-        console.log('response', next)
+        this.notifier.notify('success', 'Votre rendez-vous est payé')
+      },
+      (error) =>{
+        this.notifier.notify('error', 'Une erreur est survenue')
       })
     }
   }

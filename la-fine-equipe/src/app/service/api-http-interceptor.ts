@@ -7,13 +7,15 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NotifierService } from 'angular-notifier';
 import { Observable, tap } from 'rxjs';
 
 @Injectable()
 export class ApiHttpInterceptor implements HttpInterceptor {
   jwtToken: String = '';
 
-  constructor() {}
+  constructor() {
+  }
 
   intercept(
     request: HttpRequest<any>,
@@ -51,8 +53,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
         },
         (error: HttpErrorResponse) => {
           if (error instanceof HttpErrorResponse) {
-            if (error.status === 401) {
-              console.log('erreur 401');
+            if (error.status === 400) {
             }
           }
         }
